@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Dynamic Form</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.154.0.min.js"></script>
+
+<!-- important MUST INCLUDED these files by direct download -->
+<script src="js/aws-cognito-sdk.min.js"></script>
+<script src="js/amazon-cognito-identity.min.js"></script>
+
+<!-- This needs to be first as it holds global variables that are required for other scripts -->
+<script src="js/data.js"></script>
+
+<!-- this is where main js happens -->
+<script src="js/Admin.js"></script>
+
+<!-- This sends URL request to AWS cloud search and formats JSON response -->
+<script src="js/query.js"></script>
+
+<!-- This adds AWS Item. open script for further description -->
+<script src="js/AWSItem.js"></script>
+
+<!-- This hides and displays location link on location icon click -->
+<script src="js/locationClick.js"></script>
+
+<!-- js for user access stuff like sign in/up/out -->
+<script src="js/signIn.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="stylesheets/homepage.css" />
+
+<!-- css for user access -->
+<link rel="stylesheet" type="text/css" href="stylesheets/signIn.css" />
+
+<!-- This is where main css happens -->
+<link rel="stylesheet" type="text/css" href="stylesheets/Admin.css" />
+  
+</head>
+<body style="padding-top:45px">
+
+<div id="overlay-back"></div>
+<div id="overlay"></div>
+
+<nav class="container-fluid navbar fixed-top navbar-expand-lg navbar-light bg-light" style="padding:2px;margin:0;z-index:2;">
+	
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse dual-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+        </ul>
+    </div>
+	
+	<div class="navbar-collapse collapse dual-collapse">
+		<form class="my-2 my-lg-0 nav-item d-flex mx-auto">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>
+		
+    <div class="navbar-collapse collapse dual-collapse">
+        <ul class="navbar-nav ml-auto">
+		
+            <li id="user1" class="nav-item dropdown">
+				<button id="callSignIn" class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" type="submit">Sign In</button>
+   
+				<!-- <span id="welcomeText" class="nav-link">Welcome</span> -->
+			</li>
+            <li id="user2" class="nav-item">
+                <button id="callSignUp" class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" type="submit">Sign Up</button>
+         
+				<!-- <button id="signOutBtn" class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" type="submit">Sign Out</button> -->
+			</li>
+        </ul>
+    </div>
+	
+</nav>
+
+<h1>Base Webpage</h1>
+
+<form id="addPost">
+	<input type="button" value="Add ttd post" style="font-weight:bold;" onclick="add_post()">
+</form>
+
+<div id="blog_post">
+
+</div>
+
+<input type="text" id="searchText" name="searchText" placeholder="query...">
+<input type="button" id="Search" value="Search">
+<br>
+<textarea readonly id= "textarea" placeholder="Relevant data from list, describe, and create table will show up here" style="width:600px; height:400px"></textarea>
+
+
+<div id="search_results">
+
+</div>
+
+<script>
+//onload run to check if user is already signed in
+//needs to be run after userbox element has loaded or throws error
+currentUserAccess();
+</script>
+
+</body>
+
+</html>
